@@ -8,6 +8,7 @@ const HeaderCartButton = ({ label, type }) => {
     const ctx = useContext(CartContext);
     const { items } = useContext(ShopContext);
     const [btnHighlighted, setBtnHiglighted] = useState(false);
+    // add animation
     useEffect(() => {
         if (items.length === 0) return;
         setBtnHiglighted(true);
