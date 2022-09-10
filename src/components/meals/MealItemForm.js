@@ -1,9 +1,27 @@
+import { useRef, useState } from "react";
 import Input from "./Input";
 import classes from "./MailItemForm.module.css";
-const MailItemForm = ({ id }) => {
+
+const MailItemForm = ({ id, onAddItem }) => {
+    const amountInputRef = useRef();
+    const [isValid, setValid] = useState(true);
+    const addItemToCart = (e) => {
+        e.preventDefault();
+        const enteredAmount = +amountInputRef.current.value;
+        if (
+            !amountInputRef.current.value.trim() ||
+            enteredAmount <= 0 ||
+            enteredAmount > 5
+        ) {
+            setValid(false);
+            return;
+        }
+        return onAddItem(enteredAmount);
+    };
     return (
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={addItemToCart}>
             <Input
+                ref={amountInputRef}
                 label="Amount"
                 input={{
                     id: "name" + id,
@@ -14,7 +32,8 @@ const MailItemForm = ({ id }) => {
                     defaultValue: "1",
                 }}
             />
-            <button>+ Add</button>
+            <button type="submit">+ Add</button>
+            {!isValid && <p style={{ color: "red" }}>Enter valid amount</p>}
         </form>
     );
 };
