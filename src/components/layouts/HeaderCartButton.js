@@ -18,6 +18,7 @@ const HeaderCartButton = ({ label, type }) => {
         return () => {
             clearTimeout(timer);
         };
+        
     }, [items]);
 
     const numberOfItems = items.reduce((total, item) => total + item.amount, 0);
