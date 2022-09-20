@@ -1,23 +1,15 @@
-<<<<<<< HEAD
 import { useState } from "react";
-=======
->>>>>>> 457bb94c788f96c0c7e4b2fc19a0f7073ae33c0e
 import { useContext } from "react";
 import ShopContext from "../../store/shop-context";
 import CartContext from "../context/cart-context";
 import Modal from "../ui/Modal";
 import classes from "./Cart.module.css";
 import CartItem from "./CartItem";
-<<<<<<< HEAD
 import Checkout from "./Checkout";
 
 const Cart = () => {
     const [isCheckout, setCheckout] = useState(false);
     const [hasError, setError] = useState();
-=======
-
-const Cart = () => {
->>>>>>> 457bb94c788f96c0c7e4b2fc19a0f7073ae33c0e
     const { items, totalAmount, addItem, removeItem } = useContext(ShopContext);
 
     const onAddItemHandler = (item) => {
@@ -27,13 +19,10 @@ const Cart = () => {
         removeItem(id);
     };
 
-<<<<<<< HEAD
     const orderHandler = () => {
         setCheckout(true);
     };
 
-=======
->>>>>>> 457bb94c788f96c0c7e4b2fc19a0f7073ae33c0e
     const cartItems = (
         <ul className={classes["cart-items"]}>
             {items.map((item) => (
@@ -50,7 +39,6 @@ const Cart = () => {
     );
 
     const { hideCart } = useContext(CartContext);
-<<<<<<< HEAD
     const submitDataHandler = async (userData) => {
         try {
             const res = await fetch(
@@ -70,8 +58,6 @@ const Cart = () => {
             setError(e.message);
         }
     };
-=======
->>>>>>> 457bb94c788f96c0c7e4b2fc19a0f7073ae33c0e
 
     return (
         <Modal>
@@ -80,7 +66,6 @@ const Cart = () => {
                 <span>Total Amount</span>
                 <span>{`$${Math.abs(totalAmount).toFixed(2)}`}</span>
             </div>
-<<<<<<< HEAD
             {isCheckout && (
                 <Checkout onSubmitData={submitDataHandler} onClick={hideCart} />
             )}
@@ -102,16 +87,6 @@ const Cart = () => {
                     )}
                 </div>
             )}
-=======
-            <div className={classes.actions}>
-                <button className={classes["button--alt"]} onClick={hideCart}>
-                    Close
-                </button>
-                {items.length !== 0 && (
-                    <button className={classes.button}>Order</button>
-                )}
-            </div>
->>>>>>> 457bb94c788f96c0c7e4b2fc19a0f7073ae33c0e
         </Modal>
     );
 };
